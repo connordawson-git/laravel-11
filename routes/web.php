@@ -4,50 +4,36 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Route;
 
+$careers =  [
+    [
+        'id' => 1,
+        'title' => 'Developer',
+        'salary' => '£40000'
+    ],
+    [
+        'id' => 2,
+        'title' => 'Senior Developer',
+        'salary' => '£60000'
+    ],
+    [
+        'id' => 3,
+        'title' => 'Project Manager',
+        'salary' => '£35000'
+    ],
+
+];
+
 Route::get('/', function () {
     return view('home');
 });
-Route::get('/careers', function () {
+Route::get('/careers', function () use ($careers) {
     return view('careers', [
-        'careers' => [
-            [
-                'id' => 1,
-                'title' => 'Developer',
-                'salary' => '£40000'
-            ],
-            [
-                'id' => 2,
-                'title' => 'Senior Developer',
-                'salary' => '£60000'
-            ],
-            [
-                'id' => 3,
-                'title' => 'Project Manager',
-                'salary' => '£35000'
-            ],
-
-        ]
+        'careers' => $careers
     ]);
 });
 
-Route::get('/careers/{id}', function ($id) {
-    $careers = [
-                [
-                    'id' => 1,
-                    'title' => 'Developer',
-                    'salary' => '£40000'
-                ],
-                [
-                    'id' => 2,
-                    'title' => 'Senior Developer',
-                    'salary' => '£60000'
-                ],
-                [
-                    'id' => 3,
-                    'title' => 'Project Manager',
-                    'salary' => '£35000'
-                ]
-            ];
+Route::get('/careers/{id}', function ($id) use ($careers) {
+
    $career = Arr::first($careers, fn($career) => $career['id'] == $id);
 
     return view('career', ['career' => $career]);
