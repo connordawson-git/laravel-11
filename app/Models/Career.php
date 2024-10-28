@@ -29,6 +29,11 @@ class Career
 
     public static function find( int $id):array
     {
-        return Arr::first(static::all(), fn($career) => $career['id'] == $id);
+        $career = Arr::first(static::all(), fn($career) => $career['id'] == $id);
+        if(!$career){
+            abort(404);
+        }else{
+            return $career;
+        }
     }
 }

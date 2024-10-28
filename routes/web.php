@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Route;
 use App\Models\Career;
 
