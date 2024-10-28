@@ -17,7 +17,7 @@ Route::get('/careers', function () {
 
 Route::get('/careers/{id}', function ($id)  {
 
-   $career = Arr::first(Career::all(), fn($career) => $career['id'] == $id);
+   $career = Career::find($id);
 
     return view('career', ['career' => $career]);
 });

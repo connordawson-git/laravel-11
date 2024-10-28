@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use Illuminate\Support\Arr;
+
 class Career
 {
     public static function all(): array
@@ -23,5 +25,10 @@ class Career
                 'salary' => '£35000'
             ]
         ];
+    }
+
+    public static function find( int $id):array
+    {
+        return Arr::first(static::all(), fn($career) => $career['id'] == $id);
     }
 }
