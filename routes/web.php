@@ -4,37 +4,42 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Route;
 
-$careers =  [
-    [
-        'id' => 1,
-        'title' => 'Developer',
-        'salary' => '£40000'
-    ],
-    [
-        'id' => 2,
-        'title' => 'Senior Developer',
-        'salary' => '£60000'
-    ],
-    [
-        'id' => 3,
-        'title' => 'Project Manager',
-        'salary' => '£35000'
-    ],
+class Career {
+    public static function all()
+    {
+        return $careers = [
+            [
+                'id' => 1,
+                'title' => 'Developer',
+                'salary' => '£40000'
+            ],
+            [
+                'id' => 2,
+                'title' => 'Senior Developer',
+                'salary' => '£60000'
+            ],
+            [
+                'id' => 3,
+                'title' => 'Project Manager',
+                'salary' => '£35000'
+            ]
+        ];
+    }
+}
 
-];
 
 Route::get('/', function () {
     return view('home');
 });
-Route::get('/careers', function () use ($careers) {
+Route::get('/careers', function () {
     return view('careers', [
-        'careers' => $careers
+        'careers' => Career::all()
     ]);
 });
 
-Route::get('/careers/{id}', function ($id) use ($careers) {
+Route::get('/careers/{id}', function ($id)  {
 
-   $career = Arr::first($careers, fn($career) => $career['id'] == $id);
+   $career = Arr::first(Career::all(), fn($career) => $career['id'] == $id);
 
     return view('career', ['career' => $career]);
 });
