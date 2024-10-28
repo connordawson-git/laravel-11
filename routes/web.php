@@ -3,29 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Route;
-
-class Career {
-    public static function all()
-    {
-        return $careers = [
-            [
-                'id' => 1,
-                'title' => 'Developer',
-                'salary' => '£40000'
-            ],
-            [
-                'id' => 2,
-                'title' => 'Senior Developer',
-                'salary' => '£60000'
-            ],
-            [
-                'id' => 3,
-                'title' => 'Project Manager',
-                'salary' => '£35000'
-            ]
-        ];
-    }
-}
+use App\Models\Career;
 
 
 Route::get('/', function () {
