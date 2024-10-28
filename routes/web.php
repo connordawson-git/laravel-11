@@ -1,14 +1,56 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('home');
 });
+Route::get('/careers', function () {
+    return view('careers', [
+        'careers' => [
+            [
+                'id' => 1,
+                'title' => 'Developer',
+                'salary' => '£40000'
+            ],
+            [
+                'id' => 2,
+                'title' => 'Senior Developer',
+                'salary' => '£60000'
+            ],
+            [
+                'id' => 3,
+                'title' => 'Project Manager',
+                'salary' => '£35000'
+            ],
 
-Route::get('/about', function () {
-    return view('about');
+        ]
+    ]);
+});
+
+Route::get('/careers/{id}', function ($id) {
+    $careers = [
+                [
+                    'id' => 1,
+                    'title' => 'Developer',
+                    'salary' => '£40000'
+                ],
+                [
+                    'id' => 2,
+                    'title' => 'Senior Developer',
+                    'salary' => '£60000'
+                ],
+                [
+                    'id' => 3,
+                    'title' => 'Project Manager',
+                    'salary' => '£35000'
+                ]
+            ];
+   $career = Arr::first($careers, fn($career) => $career['id'] == $id);
+
+    return view('career', ['career' => $career]);
 });
 
 Route::get('/contact-us', function () {
