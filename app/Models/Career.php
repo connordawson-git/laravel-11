@@ -2,10 +2,18 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 
-class Career
+class Career extends Model
 {
+    /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'careers';
+
     /**
      * The attributes that are mass assignable.
      *
@@ -16,26 +24,6 @@ class Career
         'salary',
     ];
 
-    public static function all(): array
-    {
-        return  [
-            [
-                'id' => 1,
-                'title' => 'Developer',
-                'salary' => '£40000'
-            ],
-            [
-                'id' => 2,
-                'title' => 'Senior Developer',
-                'salary' => '£60000'
-            ],
-            [
-                'id' => 3,
-                'title' => 'Project Manager',
-                'salary' => '£35000'
-            ]
-        ];
-    }
 
     public static function find( int $id):array
     {
