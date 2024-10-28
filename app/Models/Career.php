@@ -6,9 +6,19 @@ use Illuminate\Support\Arr;
 
 class Career
 {
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'title',
+        'salary',
+    ];
+
     public static function all(): array
     {
-        return $careers = [
+        return  [
             [
                 'id' => 1,
                 'title' => 'Developer',
